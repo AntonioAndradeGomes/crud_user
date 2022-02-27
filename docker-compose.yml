@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  database:
+    image: postgres
+    networks: 
+      - pg-network
+    container_name: database_app
+    restart: always
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=rootroot
+      - POSTGRES_DB=any_todo
+    volumes:
+      - pgdata:/data/postgres
+    
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  pg-network:
+    driver: bridge
+
